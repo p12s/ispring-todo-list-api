@@ -2,7 +2,7 @@ package repository
 
 import (
 	"github.com/jmoiron/sqlx"
-	todo "github.com/p12s/ispring-todo-list-api"
+	"github.com/p12s/ispring-todo-list-api"
 )
 
 type Authorization interface {
