@@ -9,11 +9,11 @@ import (
 
 /*
 Нужно получать токен пользователя, валидировать его и записывать в контекст
- */
+*/
 
 const (
 	authorizationHandler = "Authorization"
-	userCtx = "userId"
+	userCtx              = "userId"
 )
 
 func (h *Handler) userIdentity(c *gin.Context) {
@@ -44,4 +44,3 @@ func getUserId(c *gin.Context) (int, error) {
 
 	return idInt, nil
 }
-

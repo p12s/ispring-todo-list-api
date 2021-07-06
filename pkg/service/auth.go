@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	salt = "8284kjalsdf282-4asfjae93sdf"
-	tokenTTL = 12 * time.Hour
+	salt       = "8284kjalsdf282-4asfjae93sdf"
+	tokenTTL   = 12 * time.Hour
 	signingKey = "29dsjkadf*^(&le23#ls93s02a0d9"
 )
 
@@ -74,6 +74,3 @@ func generatePasswordHash(password string) string {
 	hash.Write([]byte(password))
 	return fmt.Sprintf("%x", hash.Sum([]byte(salt)))
 }
-
-
-

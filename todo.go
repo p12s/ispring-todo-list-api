@@ -3,32 +3,32 @@ package todo
 import "errors"
 
 type User struct {
-	Id 			int 	`json:"-" db:"id"`
-	Name 		string 	`json:"name" binding:"required"`
-	Username 	string 	`json:"username" binding:"required"`
-	Password 	string 	`json:"password" binding:"required"`
+	Id       int    `json:"-" db:"id"`
+	Name     string `json:"name" binding:"required"`
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
 type TodoList struct {
-	Id int `json:"id" db:"id"`
-	Title string `json:"title" db:"title"`
+	Id          int    `json:"id" db:"id"`
+	Title       string `json:"title" db:"title"`
 	Description string `json:"description" db:"description"`
 }
 
 type UsersList struct {
-	Id int
+	Id     int
 	UserId int
 	ListId int
 }
 type TodoItem struct {
-	Id int `json:"id" db:"id"`
-	Title string `json:"title" db:"title"`
+	Id          int    `json:"id" db:"id"`
+	Title       string `json:"title" db:"title"`
 	Description string `json:"description" db:"description"`
-	Done bool `json:"done" db:"done"`
+	Done        bool   `json:"done" db:"done"`
 }
 
 type ListItem struct {
-	Id int
+	Id     int
 	ListId int
 	ItemId int
 }
