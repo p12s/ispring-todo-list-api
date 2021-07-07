@@ -20,4 +20,5 @@ swag:
 	swag init -g cmd/main.go
 
 lint:
-	golangci-lint run
+	golangci-lint run -v
+

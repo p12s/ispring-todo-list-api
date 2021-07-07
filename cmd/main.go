@@ -15,6 +15,14 @@ import (
 	"syscall"
 )
 
+// @title Todo App API
+// @version 0.0.1
+// @description API Server for TodoList Application
+// @host localhost:80
+// @BasePath /
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	logrus.SetFormatter(new(logrus.JSONFormatter))
 	if err := initConfig(); err != nil {
@@ -25,13 +33,13 @@ func main() {
 	}
 
 	db, err := repository.NewPostgresDB(repository.Config{
-		Driver: viper.GetString("db.driver"),
-		Host: viper.GetString("db.host"),
-		Port: viper.GetString("db.port"),
+		Driver:   viper.GetString("db.driver"),
+		Host:     viper.GetString("db.host"),
+		Port:     viper.GetString("db.port"),
 		Username: viper.GetString("db.username"),
 		Password: os.Getenv("DB_PASSWORD"),
-		DBName: viper.GetString("db.dbname"),
-		SSLMode: viper.GetString("db.sslmode"),
+		DBName:   viper.GetString("db.dbname"),
+		SSLMode:  viper.GetString("db.sslmode"),
 	})
 	if err != nil {
 		logrus.Fatalf("👺👺👺 failed to initialize db: %s\n", err.Error())
@@ -67,6 +75,7 @@ func main() {
 
 }
 
+// initConfig - инициализация конфигов из configs/config
 func initConfig() error {
 	viper.AddConfigPath("configs")
 	viper.SetConfigName("config")
