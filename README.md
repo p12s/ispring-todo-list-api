@@ -1,6 +1,6 @@
 ![License](https://img.shields.io/github/license/p12s/ispring-todo-list-api)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/p12s/ispring-todo-list-api?style=plastic)
-[![Coverage Status](https://codecov.io/gh/p12s/ispring-todo-list-api/branch/master/graph/badge.svg?token=4P04TA403S)](https://codecov.io/gh/p12s/ispring-todo-list-api)
+[![Coverage Status](https://codecov.io/gh/p12s/ispring-todo-list-api/branch/master/graph/badge.svg?token=sTWAW1J7hW)](https://codecov.io/gh/p12s/ispring-todo-list-api)
 [![Go Report Card](https://goreportcard.com/badge/github.com/p12s/ispring-todo-list-api)](https://goreportcard.com/report/github.com/p12s/ispring-todo-list-api)
 <img src="https://github.com/p12s/ispring-todo-list-api/workflows/lint-build/badge.svg?branch=master">
 
