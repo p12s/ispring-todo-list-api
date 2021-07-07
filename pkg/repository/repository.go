@@ -30,11 +30,17 @@ type TodoItem interface {
 	GetAllCompletedItems(userId int) ([]todo.TodoItem, error)
 }
 
+// UserAction - интерфейс для удаления пользователей
+type UserAction interface {
+	Delete(userId int) error
+}
+
 // Repository - репозитрий
 type Repository struct {
 	Authorization
 	TodoList
 	TodoItem
+	UserAction
 }
 
 // NewRepository - конструктор
@@ -43,5 +49,6 @@ func NewRepository(db *sqlx.DB) *Repository {
 		Authorization: NewAuthPostgres(db),
 		TodoList:      NewTodoListPostgres(db),
 		TodoItem:      NewTodoItemPostgres(db),
+		UserAction:      NewUserPostgres(db),
 	}
 }

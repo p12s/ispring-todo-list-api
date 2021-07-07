@@ -31,11 +31,17 @@ type TodoItem interface {
 	GetAllCompletedItems(userId int) ([]todo.TodoItem, error)
 }
 
+// UserAction - интерфейс для удаления пользователей
+type UserAction interface {
+	Delete(userId int) error
+}
+
 // Service - сервис
 type Service struct {
 	Authorization
 	TodoItem
 	TodoList
+	UserAction
 }
 
 // NewService - конструктор
@@ -44,5 +50,6 @@ func NewService(repos *repository.Repository) *Service {
 		Authorization: NewAuthService(repos.Authorization),
 		TodoList:      NewTodoListService(repos.TodoList),
 		TodoItem:      NewTodoItemService(repos.TodoItem, repos.TodoList),
+		UserAction:      NewUserService(repos.UserAction),
 	}
 }

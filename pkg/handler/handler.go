@@ -55,6 +55,11 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			items.DELETE("/:id", h.deleteItem)
 			items.GET("/completed", h.getAllCompletedItems)
 		}
+
+		user := api.Group("/user")
+		{
+			user.DELETE("/:id", h.deleteUser)
+		}
 	}
 	return router
 }
