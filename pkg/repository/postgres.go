@@ -13,6 +13,7 @@ const (
 	listsItemsTable = "lists_items"
 )
 
+// Config - конфиг БД
 type Config struct {
 	Driver   string
 	Host     string
@@ -23,6 +24,7 @@ type Config struct {
 	SSLMode  string
 }
 
+// NewPostgresDB - коннект к БД
 func NewPostgresDB(cfg Config) (*sqlx.DB, error) {
 	db, err := sqlx.Open(cfg.Driver, fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
 		cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.Password, cfg.SSLMode))

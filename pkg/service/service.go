@@ -5,12 +5,23 @@ import (
 	"github.com/p12s/ispring-todo-list-api/pkg/repository"
 )
 
+// Authorization - интерфейс для регистрации/авторизации
 type Authorization interface {
 	CreateUser(user todo.User) (int, error)
 	GenerateToken(username, password string) (string, error)
 	ParseToken(token string) (int, error)
 }
 
+// TodoList - интерфейст для работы со списками задач
+type TodoList interface {
+	Create(userId int, list todo.TodoList) (int, error)
+	GetAll(userId int) ([]todo.TodoList, error)
+	GetById(userId, listId int) (todo.TodoList, error)
+	Delete(userId, listId int) error
+	Update(userId, listId int, input todo.UpdateListInput) error
+}
+
+// TodoItem - интейрфейс для работы с элементами списка задач
 type TodoItem interface {
 	Create(userId, listId int, list todo.TodoItem) (int, error)
 	GetAll(userId, listId int) ([]todo.TodoItem, error)
@@ -20,20 +31,14 @@ type TodoItem interface {
 	GetAllCompletedItems(userId int) ([]todo.TodoItem, error)
 }
 
-type TodoList interface {
-	Create(userId int, list todo.TodoList) (int, error)
-	GetAll(userId int) ([]todo.TodoList, error)
-	GetById(userId, listId int) (todo.TodoList, error)
-	Delete(userId, listId int) error
-	Update(userId, listId int, input todo.UpdateListInput) error
-}
-
+// Service - сервис
 type Service struct {
 	Authorization
 	TodoItem
 	TodoList
 }
 
+// NewService - конструктор
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Authorization: NewAuthService(repos.Authorization),

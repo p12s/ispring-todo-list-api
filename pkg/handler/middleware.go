@@ -8,7 +8,7 @@ import (
 )
 
 /*
-Нужно получать токен пользователя, валидировать его и записывать в контекст
+Нужно получить токен пользователя, провалидировать его и записать в контекст
 */
 
 const (
@@ -16,6 +16,7 @@ const (
 	userCtx              = "userId"
 )
 
+// userIdentity - проверка авторизации
 func (h *Handler) userIdentity(c *gin.Context) {
 	header := c.GetHeader(authorizationHandler)
 	if header == "" {
@@ -48,6 +49,7 @@ func (h *Handler) userIdentity(c *gin.Context) {
 	c.Set(userCtx, userId)
 }
 
+// getUserId - получение UserId из контекста
 func getUserId(c *gin.Context) (int, error) {
 	id, ok := c.Get(userCtx)
 	if !ok {

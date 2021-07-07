@@ -7,14 +7,17 @@ import (
 	"strings"
 )
 
+// TodoItemPostgres - объект работы с таблицей ЭЛЕМЕТОВ списков задач
 type TodoItemPostgres struct {
 	db *sqlx.DB
 }
 
+// NewTodoItemPostgres - конструктор
 func NewTodoItemPostgres(db *sqlx.DB) *TodoItemPostgres {
 	return &TodoItemPostgres{db: db}
 }
 
+// Create - создание ЭЛЕМЕТОВ списка задач
 func (r *TodoItemPostgres) Create(listId int, item todo.TodoItem) (int, error) {
 	tx, err := r.db.Begin()
 	if err != nil {
@@ -47,6 +50,7 @@ func (r *TodoItemPostgres) Create(listId int, item todo.TodoItem) (int, error) {
 	return itemId, tx.Commit()
 }
 
+// GetAll - получение всех ЭЛЕМЕТОВ выбранного списка
 func (r *TodoItemPostgres) GetAll(userId, listId int) ([]todo.TodoItem, error) {
 	var items []todo.TodoItem
 	query := fmt.Sprintf(`SELECT ti.id, ti.title, ti.description, ti.done FROM %s ti INNER JOIN %s li on li.item_id = ti.id
@@ -59,6 +63,7 @@ func (r *TodoItemPostgres) GetAll(userId, listId int) ([]todo.TodoItem, error) {
 	return items, nil
 }
 
+// GetAllCompletedItems - получение всех выполненных ЭЛЕМЕТОВ
 func (r *TodoItemPostgres) GetAllCompletedItems(userId int) ([]todo.TodoItem, error) {
 	var items []todo.TodoItem
 	query := fmt.Sprintf(`SELECT ti.id, ti.title, ti.description, ti.done FROM %s ti INNER JOIN %s li on li.item_id = ti.id
@@ -71,6 +76,7 @@ func (r *TodoItemPostgres) GetAllCompletedItems(userId int) ([]todo.TodoItem, er
 	return items, nil
 }
 
+// GetById - получение ЭЛЕМЕНТА
 func (r *TodoItemPostgres) GetById(userId, itemId int) (todo.TodoItem, error) {
 	var item todo.TodoItem
 	query := fmt.Sprintf(`SELECT ti.id, ti.title, ti.description, ti.done FROM %s ti INNER JOIN %s li on li.item_id = ti.id
@@ -83,6 +89,7 @@ func (r *TodoItemPostgres) GetById(userId, itemId int) (todo.TodoItem, error) {
 	return item, nil
 }
 
+// Delete - удаление ЭЛЕМЕНТА
 func (r *TodoItemPostgres) Delete(userId, itemId int) error {
 	query := fmt.Sprintf(`DELETE FROM %s ti USING %s li, %s ul 
 									WHERE ti.id = li.item_id AND li.list_id = ul.list_id AND ul.user_id = $1 AND ti.id = $2`,
@@ -91,6 +98,7 @@ func (r *TodoItemPostgres) Delete(userId, itemId int) error {
 	return err
 }
 
+// Update - обновление ЭЛЕМЕНТА
 func (r *TodoItemPostgres) Update(userId, itemId int, input todo.UpdateItemInput) error {
 	setValues := make([]string, 0)
 	args := make([]interface{}, 0)

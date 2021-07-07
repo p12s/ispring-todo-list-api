@@ -15,6 +15,14 @@ import (
 	"syscall"
 )
 
+// @title Todo App API
+// @version 0.0.1
+// @description API Server for TodoList Application
+// @host localhost:80
+// @BasePath /
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	logrus.SetFormatter(new(logrus.JSONFormatter))
 	if err := initConfig(); err != nil {
@@ -67,6 +75,7 @@ func main() {
 
 }
 
+// initConfig - инициализация конфигов из configs/config
 func initConfig() error {
 	viper.AddConfigPath("configs")
 	viper.SetConfigName("config")

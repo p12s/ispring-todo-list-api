@@ -8,14 +8,17 @@ import (
 	"strings"
 )
 
+// TodoListPostgres - объект работы с таблицей СПИСКОВ задач
 type TodoListPostgres struct {
 	db *sqlx.DB
 }
 
+// NewTodoListPostgres - контруктор
 func NewTodoListPostgres(db *sqlx.DB) *TodoListPostgres {
 	return &TodoListPostgres{db: db}
 }
 
+// Create - создание СПИСКА
 func (r *TodoListPostgres) Create(userId int, list todo.TodoList) (int, error) {
 	tx, err := r.db.Begin()
 	if err != nil {
@@ -46,6 +49,7 @@ func (r *TodoListPostgres) Create(userId int, list todo.TodoList) (int, error) {
 	return id, tx.Commit()
 }
 
+// GetAll - получение всех СПИСКОВ пользователя
 func (r *TodoListPostgres) GetAll(userId int) ([]todo.TodoList, error) {
 	var lists []todo.TodoList
 
@@ -56,6 +60,7 @@ func (r *TodoListPostgres) GetAll(userId int) ([]todo.TodoList, error) {
 	return lists, err
 }
 
+// GetById - получение СПИСКА
 func (r *TodoListPostgres) GetById(userId, listId int) (todo.TodoList, error) {
 	var list todo.TodoList
 
@@ -67,6 +72,7 @@ func (r *TodoListPostgres) GetById(userId, listId int) (todo.TodoList, error) {
 	return list, err
 }
 
+// Delete - удаление СПИСКА
 func (r *TodoListPostgres) Delete(userId, listId int) error {
 	query := fmt.Sprintf("DELETE FROM %s tl USING %s ul WHERE tl.id = ul.list_id AND ul.user_id=$1 AND ul.list_id=$2",
 		todoListsTable, usersListsTable)
@@ -75,6 +81,7 @@ func (r *TodoListPostgres) Delete(userId, listId int) error {
 	return err
 }
 
+// Update - удаление СПИСКА
 func (r *TodoListPostgres) Update(userId, listId int, input todo.UpdateListInput) error {
 	setValues := make([]string, 0)
 	args := make([]interface{}, 0)
