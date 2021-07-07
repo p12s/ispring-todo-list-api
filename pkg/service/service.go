@@ -50,6 +50,6 @@ func NewService(repos *repository.Repository) *Service {
 		Authorization: NewAuthService(repos.Authorization),
 		TodoList:      NewTodoListService(repos.TodoList),
 		TodoItem:      NewTodoItemService(repos.TodoItem, repos.TodoList),
-		UserAction:      NewUserService(repos.UserAction),
+		UserAction:    NewUserService(repos.UserAction),
 	}
 }

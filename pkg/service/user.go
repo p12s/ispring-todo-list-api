@@ -6,7 +6,7 @@ import (
 
 // UserService - сервис для таблицы пользователей
 type UserService struct {
-	userRepo     repository.UserAction
+	userRepo repository.UserAction
 }
 
 // NewUserService - конструктор

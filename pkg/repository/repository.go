@@ -49,6 +49,6 @@ func NewRepository(db *sqlx.DB) *Repository {
 		Authorization: NewAuthPostgres(db),
 		TodoList:      NewTodoListPostgres(db),
 		TodoItem:      NewTodoItemPostgres(db),
-		UserAction:      NewUserPostgres(db),
+		UserAction:    NewUserPostgres(db),
 	}
 }
