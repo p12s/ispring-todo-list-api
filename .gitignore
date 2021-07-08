@@ -17,6 +17,7 @@ vendor
 **/.DS_Store
 .env
 configs/config.yml
+.database/
 
 # User-specific stuff
 .idea/**/workspace.xml
