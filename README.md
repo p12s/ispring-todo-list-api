@@ -17,7 +17,10 @@
 git clone https://github.com/p12s/ispring-todo-list-api.git
 cd ispring-todo-list-api 
 
-docker-compose up
+mv configs/config.example.yml configs/config.yml
+mv .env.example .env
+
+docker-compose up -d
 ```
 Что происходит:
 - поднимается контейнер с PostgreSQL
