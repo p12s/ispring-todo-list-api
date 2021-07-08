@@ -22,8 +22,8 @@ docker-compose up
 Что происходит:
 - поднимается контейнер с PostgreSQL
 - поднимается контейнер с сервисом [migrate](https://github.com/golang-migrate/migrate) для инициализации/миграции БД
-- БД пиводится к рабочему виду, контейнер с migrate удалаяется
-- поднимается контейнер с кодом приложения: [документация методов](http://localhost/swagger/index.html)
+- БД приводится к рабочему виду, контейнер с migrate удаляется
+- поднимается контейнер с кодом приложения: [http://localhost/swagger/index.html](http://localhost/swagger/index.html)
 
 ## Требования
 - ✅ Язык программирования: PHP 7.x или Go   
